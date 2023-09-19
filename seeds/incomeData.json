@@ -1,0 +1,14 @@
+//income test data
+[
+    {
+        "income":3000
+    },
+    {
+        "income":4000
+    },
+    {
+        "income":5000
+    }
+
+
+]

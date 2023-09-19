@@ -1,0 +1,36 @@
+/* monthly expense data */
+
+[
+    {
+        "houserent":1000,
+        "gas":100,
+        "medical":100,
+        "insurance":50,
+        "grocery":200,
+        "internet":100,
+        "resturants":100,
+        "others":300
+    },
+
+    {
+        "houserent":2000,
+        "gas":100,
+        "medical":100,
+        "insurance":50,
+        "grocery":200,
+        "internet":100,
+        "resturants":100,
+        "others":300
+    },
+    {
+        "houserent":3000,
+        "gas":100,
+        "medical":100,
+        "insurance":50,
+        "grocery":200,
+        "internet":100,
+        "resturants":100,
+        "others":300
+    }
+
+]
