@@ -9,7 +9,8 @@
         "grocery":200,
         "internet":100,
         "resturants":100,
-        "others":300
+        "others":300,
+        "month":1
     },
 
     {
@@ -20,7 +21,8 @@
         "grocery":200,
         "internet":100,
         "resturants":100,
-        "others":300
+        "others":300,
+        "month":2
     },
     {
         "houserent":3000,
@@ -30,7 +32,8 @@
         "grocery":200,
         "internet":100,
         "resturants":100,
-        "others":300
+        "others":300,
+        "month":3
     }
 
 ]
