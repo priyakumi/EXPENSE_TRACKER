@@ -1,4 +1,6 @@
-/*user login TEST data*/
+const { user } = require('../models');
+
+const userData = 
 
 [
     {
@@ -17,3 +19,6 @@
       "password": "password123"
     }
   ]
+  const seeduser = () => expense.bulkCreate(userData);
+
+module.exports = seeduser;
