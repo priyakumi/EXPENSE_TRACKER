@@ -1,44 +1,68 @@
-const { expense } = require('../models');
-
-const expenseData = [
-  {
-        "houserent":1000,
+[
+    {
+    
+      "loan":1000,
+      "rent":1000,
+      "gas":100,
+      "medical":100,
+      "car":200,
+      "food":200,
+      "month":1,
+      "user_id":1
+    },
+    {
+        
+        "loan":1000,
+        "rent":1000,
         "gas":100,
         "medical":100,
-        "insurance":50,
-        "grocery":200,
-        "internet":100,
-        "resturants":100,
-        "others":300,
+        "car":200,
+        "food":200,
+        "month":2,
+        "user_id":1
+      },
+      {
+        
+        "loan":1000,
+        "rent":1000,
+        "gas":100,
+        "medical":100,
+        "car":200,
+        "food":200,
         "month":1,
-        "user_id":
-    },
-
-    {
-        "houserent":2000,
+        "user_id":2
+      },
+      {
+      
+        "loan":1000,
+        "rent":1000,
         "gas":100,
         "medical":100,
-        "insurance":50,
-        "grocery":200,
-        "internet":100,
-        "resturants":100,
-        "others":300,
-        "month":2
-    },
-    {
-        "houserent":3000,
+        "car":200,
+        "food":200,
+        "month":2,
+        "user_id":2
+      },
+      {
+        
+        "loan":1000,
+        "rent":1000,
         "gas":100,
         "medical":100,
-        "insurance":50,
-        "grocery":200,
-        "internet":100,
-        "resturants":100,
-        "others":300,
-        "month":3
-    }
-
+        "car":200,
+        "food":200,
+        "month":1,
+        "user_id":3
+      },
+      {
+        
+        "loan":1000,
+        "rent":1000,
+        "gas":100,
+        "medical":100,
+        "car":200,
+        "food":200,
+        "month":1,
+        "user_id":2
+      }
 ]
-const seedexpense = () => expense.bulkCreate(expensetData);
-
-module.exports = seedexpense;
-

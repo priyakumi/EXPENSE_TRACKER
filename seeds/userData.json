@@ -1,24 +1,25 @@
-const { user } = require('../models');
-
-const userData = 
-
 [
-    {
-      "name": "mike",
-      "email": "mike@yahoo.com",
-      "password": "password123"
-    },
-    {
-      "name": "jane",
-      "email": "jane@gmail.com",
-      "password": "password123"
-    },
-    {
-      "name": "sam",
-      "email": "sam@hotmail.com",
-      "password": "password123"
-    }
-  ]
-  const seeduser = () => expense.bulkCreate(userData);
+  {
+   
+    "username":"sam",
+    "email":"sam@sam.com",
+    "password":"password"
 
-module.exports = seeduser;
+  },
+
+  {
+      
+      "username":"amy",
+      "email":"amy@amy.com",
+      "password":"password"
+
+    },
+    {
+      
+      "username":"ken",
+      "email":"ken@ken.com",
+      "password":"password"
+
+    }
+
+]

@@ -1,53 +1,32 @@
 //login route
 const router = require('express').Router();
-const { User } = require('../../models');
+const bcrypt = require("bcrypt");
+const session = require("express-session");
 
-router.post('/', async (req, res) => {
-  try {
-    // Find the user who matches with the username in the database
-    const userCheck = await User.findOne({ where: {user_name:  req.body.user_name}});
-  
-    // If there is no match with the username, send a incorrect message to the user and have them retry
-    if (!userCheck) {
-      res.status(400).json({ message: 'Incorrect username or password, please try again' });
-      return;
-    }
+const { User } = require('./models/user');
 
-    // Now verify the password the user has put in and check in the database if this password coincides with the username 
-    const validPassword = await userCheck.checkPw(req.body.password);
-    
-    // // If the password doesn't exist, then send a error message of wrong password and have them retry.
-    if (!validPassword) {
-      res.status(401).json({ message: 'Incorrect password, please try again' });
-      return;
-    }
+router.post("/", async (req, res) => {
+  // Getting username and password
+  const username = req.body.username
+  const password = req.body.password
 
+  // checking for the username
+  const user = await User.findOne({where: {username}})
+  if(!user){res.sendStatus(404); return;}
 
-    // Session variables based on the current logged in user
-    req.session.save(() => {
-      req.session.user_id = userCheck.id;
-      req.session.logged_in = true;
-      
-      res.json({ user: userCheck, message: 'You are logged in'})
-    });
-    
+  // hased password
+  const dbHashedPass = user.password
 
-  } catch (error) {
-    res.status(500).json({error: error, message: 'Something went wrong.'});
-    console.log(error)
-  }
-});
+  // Comparing to hashed pwd with db pwd
+  const isPass = await bcrypt.compare(password, dbHashedPass)
 
+  // Checking for correct password
+  if(!isPass){res.sendStatus(404); return;}
 
-router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
-    // Remove the session variables
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
+  //session storage for userid
+  req.session.loggedInUser = user.id
+  saveSession(req.session, user.id)
+  res.sendStatus(200)
+})
 
-module.exports = router;
+module.exports = router

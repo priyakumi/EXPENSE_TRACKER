@@ -1,33 +1,37 @@
-const router = require('express').Router();
-const { response } = require('express');
-const { User } = require('../../models');
+const router = require("express").Router();
+const bcrypt = require("bcrypt");
+const {User} = require("../models/user");
 
-router.post('/', async (req, res) => {
-    
-    const findUser = await User.findOne({ where: { user_name: req.body.user_name } });
+router.post("/", async (req, res) => {
+ //getting then username and password
+  const username = req.body.username;
+  const password = req.body.password;
 
-    if(findUser) {
-        res.status(400).json({ message: 'Looks like there is already a user with that username. Click the login button to sign in or create a different username.' });
-        return;
-    }
+  // checking for the username
+  let user = await User.findOne({where: {username}});
+  if(user){res.sendStatus(500); return;}
 
-        // If there is no match with the username, send a incorrect message to the user and have them retry       
-    try {
-        const user = await User.create({
-            user_name: req.body.user_name,
-            password: req.body.password
-        });
+  // Make hashed password
 
+  const hashedPassword = await bcrypt.hash(password,10);
 
-        req.session.save(() => {
-            req.session.user_id = user.id;
-            req.session.logged_in = true;
-            res.status(200).json(user);
-        });
-         
-            } catch (error) {
-                res.status(500).json(error)
-            }
-});
+  // Create a new user
+  await User.create({
+    username,
+    password: hashedPassword
+  });
+
+  // Login in newly created user
+  // Get the newly created user
+  user = await User.findOne({where: {username}});
+  if(!user){res.sendStatus(500); return;}
+  // Set session to user id
+  req.session.loggedInUser = user.id;
+  // Save current session data in the db
+  saveSession(req.session, user.id);
+
+  // Send back success code
+  res.sendStatus(200);
+})
 
 module.exports = router;
