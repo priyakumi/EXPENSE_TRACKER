@@ -1,15 +1,18 @@
 const router = require('express').Router();
-const loginRoute = require('./loginroute');
-const logoutRoute = require('./logoutroute');
-const signupRoute = require('./signuproute');
-//TODO uncomment: const taskRoute = require('./task)()
+const sequelize = require('../config/connection');
+
+router.get('/', (req, res) => {
+    res.render('home');
+})
 
 
-router.use('/login', loginRoute);
-router.use('/logout', logoutRoute);
-router.use('/signup', signupRoute);
+router.get('/register', (req, res) => {
+    res.render('register');
+})
 
-//TODO uncomment router.use('/task',taskRoute);
+router.get('/dashboard', (req, res) => {
+    res.render('dashboard');
+})
 
 
 module.exports = router;
