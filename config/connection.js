@@ -5,7 +5,7 @@ require('dotenv').config();
 // create connection to db
 const sequelize = process.env.JAWSDB_URL
   ? new Sequelize(process.env.JAWSDB_URL)
-  : new Sequelize('saversDB', 'root', 'hyper1271$',  {
+  : new Sequelize('saversDB', 'root', 'Hyper1271$',  {
       host: 'localhost',
       dialect: 'mysql',
       dialectOptions: {
