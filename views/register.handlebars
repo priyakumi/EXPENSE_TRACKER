@@ -1,10 +1,12 @@
 ﻿{{>nav-register}}
 
 <div class="columns">
-  <div class="column is-two-thirds"><div class="card">
-    <div class="card-content">
-      <div class="content">
-        <div class="field is-horizontal">
+  <div class="column is-two-thirds">
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <div class="field is-horizontal">
+            <!-- First Name -->
             <div class="field-label is-normal">
               <label class="label">Enter</label>
             </div>
@@ -17,9 +19,10 @@
                   </span>
                 </p>
               </div>
+              <!-- Last Name -->
               <div class="field">
                 <p class="control is-expanded has-icons-left has-icons-right">
-                  <input class="input is-danger" type="email" id="lastname" placeholder="Last name" value="">
+                  <input class="input is-danger" type="text" id="lastname" placeholder="Last name" value="">
                   <span class="icon is-small is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
@@ -30,8 +33,8 @@
               </div>
             </div>
           </div>
-          
-          
+
+          <!-- Type of Use Dropdown -->
           <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label">Type of use</label>
@@ -50,8 +53,8 @@
               </div>
             </div>
           </div>
-          
-          
+
+          <!-- Email -->
           <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label">E-mail</label>
@@ -59,7 +62,7 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <input class="input is-danger" type="text" id= "email" placeholder="exemple: trackSaver@gmail.com">
+                  <input class="input is-danger" type="email" id="email" placeholder="example: trackSaver@gmail.com">
                 </div>
                 <p class="help is-danger">
                   This field is required*
@@ -68,6 +71,7 @@
             </div>
           </div>
 
+          <!-- Password -->
           <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label">Choose a password</label>
@@ -75,7 +79,7 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <input class="input is-danger" type="text" id= "password"  placeholder="exemple: trackSaver123">
+                  <input class="input is-danger" type="password" id="password" placeholder="*****">
                 </div>
                 <p class="help is-danger">
                   This field is required*
@@ -83,7 +87,8 @@
               </div>
             </div>
           </div>
-          
+
+          <!-- Submit Button -->
           <div class="field is-horizontal">
             <div class="field-label">
               <!-- Left empty for spacing -->
@@ -98,12 +103,13 @@
               </div>
             </div>
           </div>
-        
+        </div>
       </div>
     </div>
-  </div></div>
+  </div>
   <div id="footer2" class="column"></div>
   <div class="column"></div>
 </div>
-<script src="/js/register.js"></script>
 
+<!-- Include your JavaScript file -->
+<script src="/js/register.js"></script>
