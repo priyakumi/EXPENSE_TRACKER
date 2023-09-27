@@ -13,7 +13,7 @@ User.hasMany(expense, {
   });
   
   // The association can also be created from the Car side
-  expense.belongsTo(User, {
+  Expense.belongsTo(User, {
     foreignKey: 'uid',
   });
   
