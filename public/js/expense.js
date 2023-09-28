@@ -1,3 +1,5 @@
+//const { response } = require("express");
+
 document.addEventListener('DOMContentLoaded', () => {
     const incomeElement = document.getElementById('income');
     const expensesElement = document.getElementById('expenses');
@@ -143,7 +145,32 @@ document.addEventListener('DOMContentLoaded', () => {
             Swal.fire('Error', 'An error occurred while saving the transaction.', 'error');
         });
     });
+    
 
     // Initial rendering of transactions
     fetchAndRenderTransactions();
 });
+
+
+document.querySelector('#month').addEventListener('click',function(e){
+
+    const target =e.target
+    if(target.matches("button"))
+    {
+        console.log(target.dataset.value);
+        getMonthdata(target.dataset.value);
+    }
+
+})
+
+function getMonthdata(month){
+
+fetch("/api/expense/transaction/"+month)
+.then (response => response.json())
+.then (data =>{
+    console.log(data)
+
+})
+
+
+}
