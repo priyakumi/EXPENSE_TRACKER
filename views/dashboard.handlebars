@@ -1,16 +1,13 @@
 ﻿   {{> nav-dash}}
-<div class="columns">
-    <div class="column is-one-third">
-    <div id = "mainCards">
-      <div class="cardYT card">
-        <div class="card-content">
-          <!-- Search Display -->
-          <div class="field">
-            <h4 class="title is-5 has-text-grey-dark">CALENDAR 2023</h4>
-          </div>
 
-
-          <div id="month">
+    <div class="columns">
+        <div class="column is-one-third">
+            <div id="mainCards">
+                <div class="cardYT card">
+                    <div class="card-content">
+                        <div class="field">
+                            <h4 class="title is-5 has-text-grey-dark">CALENDAR 2023</h4>
+                                      <div id="month">
           <button class="button is-medium is-fullwidth is-danger is-outlined" data-value="1">January</button>
           <p class="pt-1"><button class="button is-medium is-fullwidth is-danger is-outlined" data-value="2">February</button></p>
           <p class="pt-1"><button class="button is-medium is-fullwidth is-danger is-outlined"data-value="3">March</button></p>
@@ -20,17 +17,15 @@
           <p class="pt-1"><button class="button is-medium is-fullwidth is-danger is-outlined"data-value="7">July</button></p>
           <p class="pt-1"><button class="button is-medium is-fullwidth is-danger is-outlined"data-value="8">August</button></p>
           <p class="pt-1"><button class="button is-medium is-fullwidth is-danger is-outlined"data-value="9">September</button></p>
-          <p class="pt-1"><button class="button is-medium is-fullwidth is-danger is-outlined"data-value="10">Octuber</button></p>
+          <p class="pt-1"><button class="button is-medium is-fullwidth is-danger is-outlined"data-value="10">October</button></p>
           <p class="pt-1"><button class="button is-medium is-fullwidth is-danger is-outlined"data-value="11">November</button></p>
           <p class="pt-1"><button class="button is-medium is-fullwidth is-danger is-outlined"data-value="12">December</button></p>
             </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-            </div>
-              <div>
-              </div>
-            </div>
-    
+        </div>
         <div class="column">
             <div class="card">
                 <div class="card-content">
@@ -39,13 +34,13 @@
                         <div class="level is-mobile">
                             <div class="level-item has-text-centered">
                                 <div>
-                                    <p class="heading">Income</p>
+                                    <p class="heading">Total Income</p>
                                     <p class="income" id="income">0.00</p>
                                 </div>
                             </div>
                             <div class="level-item has-text-centered">
                                 <div>
-                                    <p class="heading">Expenses</p>
+                                    <p class="heading">Total Expenses</p>
                                     <p class="expenses" id="expenses">0.00</p>
                                 </div>
                             </div>
@@ -61,21 +56,39 @@
                         <div id="expense-form-container">
                             <form id="expense-form">
                                 <div class="select is-danger">
-                                    <select id="transaction-type">
-                                        <option>Select Transaction Type</option>
-                                        <option value="Income">Income</option>
-                                        <option value="Expense">Expense</option>
-                                    </select>
-                                </div>
-                                <div class="select is-danger" id="space">
-                                    <select id="transaction-category">
-                                        <option disabled selected>Select Transaction Category</option>
-                                        <option value="Rent">Rent</option>
-                                        <option value="Credit Card">Credit Card</option>
-                                        <option value="Utilities">Utilities</option>
-                                        <option value="Food">Food</option>
-                                    </select>
-                                </div>
+                               <select id="transaction-type">
+                                    <option value="" disabled selected>Select Transaction Type</option>
+                                    <option value="Income">Income</option>
+                                    <option value="Expense">Expense</option>
+                                </select>
+                            </div>
+                              <br><br>
+                            <!-- Separate dropdown for income -->
+                            <div class="select is-danger" id="income-category" style="display: none;">
+                                <select id="transaction-category-income">
+                                    <option disabled selected>Select Income Category</option>
+                                    <option value="Salary Income">Salary Income</option>
+                                    <option value="Other Income">Other Income</option>
+                                    <option value="Income from BUsiness">Income from Business</option>
+                                    <!-- Add more income categories here -->
+                                </select>
+                            </div>
+
+                            <!-- Separate dropdown for expense -->
+                            <div class="select is-danger" id="expense-category" style="display: none;">
+                                <select id="transaction-category-expense">
+                                    <option disabled selected>Select Expense Category</option>
+                                    <option value="Rent">Rent</option>
+                                    <option value="Credit Card">Credit Card</option>
+                                    <option value="Utilities">Utilities</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Phone Bills">Phone Bills</option>
+                                    <option value="Insurance">Insurance</option>
+                                    <option value="Misc Expense">Misc Expense</option>
+                                    <!-- Add more expense categories here -->
+                                </select>
+                            </div>
+
                                 <hr>
                                 <div class="field has-addons has-addons-centered">
                                     <p class="control">
@@ -96,10 +109,21 @@
                                     </p>
                                 </div>
                                   <script id="transaction-template" type="text/x-handlebars-template">
-                                      {{#each transactions}}
-                                      <li>{{type}}: {{category}} - {{amount}}</li>
-                                      {{/each}}
-                                  </script>
+                                        {{#each transactions}}
+                                        <li>
+                                            <div class="transaction-info">
+                                                <span class="transaction-type">{{type}}</span>
+                                                <span class="transaction-category">{{category}}</span>
+                                                <span class="transaction-amount">{{amount}}</span>
+                                            </div>
+                                            <div class="transaction-date">
+                                                {{formatDate date}}
+                                            </div>
+                                            <button class="delete-button" data-transaction-id="{{id}}">Delete</button>
+                                        </li>
+                                        {{/each}}
+                                    </script>
+
                                 <hr>
                                 <!-- Transaction history -->
                                 <div class="transaction-history">

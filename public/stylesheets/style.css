@@ -85,3 +85,29 @@ h1 {
   border-bottom: 1px solid #ddd;
   font-size: 16px;
 }
+
+
+/* Custom styles for the level container */
+.level {
+  margin: 20px 0; /* Add margin space around the level container */
+}
+
+/* Custom styles for the level items */
+.level-item {
+  flex-direction: column; /* Stack the elements vertically */
+  align-items: center; /* Center align items horizontally */
+}
+
+/* Custom styles for the headings */
+.heading {
+  font-size: 18px; /* Adjust the heading font size */
+  color: #333; /* Change the heading text color */
+}
+
+/* Custom styles for the values */
+.income, .expenses, .net {
+  font-size: 24px; /* Adjust the value font size */
+  color: #007bff; /* Change the value text color to blue */
+  font-weight: bold; /* Make the values bold */
+  margin-top: 5px; /* Add some space between the heading and value */
+}

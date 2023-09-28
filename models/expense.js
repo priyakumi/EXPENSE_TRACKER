@@ -18,12 +18,12 @@
         type: DataTypes.INTEGER,
       },
       month: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       user_id: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'user',
+          model: 'User',
           key: 'uid'
         }
       }

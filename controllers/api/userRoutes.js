@@ -1,10 +1,16 @@
 const router = require('express').Router();
-const User = require('../../models/User');
+const User = require('../../models/user');
 const bcrypt = require('bcrypt');
 
 router.post('/signup', async (req, res) => {
   try {
     const { firstname, lastname, email, password } = req.body;
+
+    // Check if a user with the same email already exists
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: 'Email address is already in use.' });
+    }
 
     // Hash the password using bcrypt
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -15,12 +21,12 @@ router.post('/signup', async (req, res) => {
       lastname,
       email,
       password: hashedPassword,
-    })
+    });
 
     const data = userData.get({ plain: true });
 
     req.session.save(() => {
-      req.session.user_id = data.uid;
+      req.session.user_id = userData.uid;
       req.session.logged_in = true;
 
       // Respond with a success message using SweetAlert
@@ -28,13 +34,8 @@ router.post('/signup', async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    if (err.name === 'SequelizeUniqueConstraintError') {
-      // Error message using SweetAlert
-      res.status(400).json({ error: 'Email address is already in use.' });
-    } else {
-      // Error message using SweetAlert
-      res.status(500).json({ error: 'Internal server error' });
-    }
+    // Handle other errors using SweetAlert
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
@@ -74,11 +75,10 @@ router.post('/login', async (req, res) => {
 router.get('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
-      // Session is destroyed, now redirect to the root path
+      // Redirect to the home page after logout
       res.redirect('/');
     });
   } else {
-    // If the user is not logged in, simply redirect to the root path
     res.redirect('/');
   }
 });
