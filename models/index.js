@@ -1,18 +1,17 @@
 
-const Expense = require('./expense');
-const User = require('./User');
+const expense = require('./expense');
 
 // Define a Driver as having many Cars, thus creating a foreign key in the `car` table
-User.hasMany(Expense, {
-    foreignKey: 'user_id',
+User.hasMany(expense, {
+    foreignKey: 'uid',
   });
   
   // The association can also be created from the Car side
-  Expense.belongsTo(User, {
-    foreignKey: 'user_id',
+  expense.belongsTo(User, {
+    foreignKey: 'uid',
   });
   
-  module.exports = { User, Expense };
+  module.exports = { User, expense };
   
 
 
