@@ -1,124 +1,39 @@
-const router = require('express').Router();
-const Expense = require('../../models/expense');
+const express = require('express');
+const bodyParser = require('body-parser');
+const router = express.Router();
 
-// GET  expenses
-router.get('/', (req, res) => {
-  
-  Expense.findAll().then((expData) => {
-    res.json(expData);
-  });
+// In-memory storage for transactions (Replace with a database in production)
+let transactions = [];
+let transactionIdCounter = 1;
+
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
+// API endpoint to get transactions
+router.get('/transactions', (req, res) => {
+    res.json(transactions);
+});
+router.get('/transaction/:month',(req ,res) =>{
+res.json({month:req.params.month})
+})
+
+// API endpoint to add a new transaction
+router.post('/transactions', (req, res) => {
+    const newTransaction = req.body;
+    newTransaction.id = transactionIdCounter++; // Assign a unique ID to the transaction
+    transactions.push(newTransaction);
+    res.status(201).json(newTransaction);
 });
 
-
-// GET for particular user expense
-router.get('/:id', (req, res) => {
- 
-  Expense.findByPk(req.params.id).then((expData) => {
-    res.json(expData);
-  });
-});
-
-// CREATE a expenses 
-router.post('/', (req, res) => {
-  Expense.create(req.body)
-    .then((newExp) => {
-      res.json(newExp);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
-
-//update the user data
-router.put('/:id', (req, res) => {
- 
-  Expense.update(req.body, {
-    where: {
-      id: req.params.id
-    },
-  }
-)
-  .then((expData) => {
-    res.json(expData);
-  })
-  .catch((err) => {
-    console.log(err);
-    res.json(err);
-  });
-});
-
-//delete the  user data
-router.delete('/:id', async (req, res) => {
-  
-  try {
-    const expData = await Expense.destroy({
-      where: {
-        id: req.params.id
-      }
-    });
-
-    if (!expData) {
-      res.status(404).json({ message: 'No category found with this id!' });
-      return;
+// API endpoint to delete a transaction by ID
+router.delete('/transactions/:id', (req, res) => {
+    const transactionId = parseInt(req.params.id, 10);
+    const index = transactions.findIndex(transaction => transaction.id === transactionId);
+    if (index !== -1) {
+        const deletedTransaction = transactions.splice(index, 1)[0];
+        res.json(deletedTransaction);
+    } else {
+        res.status(404).json({ error: 'Transaction not found' });
     }
-
-    res.status(200).json(expData);
-  } catch (err) {
-    res.status(500).json(err);
-  } 
 });
-
-
-
-
-
-/*router.post('/seed', (req, res) => {
-  Expense.bulkCreate([
-    {
-      eid:1,
-      loan:1000,
-      rent:1000,
-      gas:100,
-      medical:100,
-      car:200,
-      food:200,
-      month:1,
-      user_id:2
-    },
-    {
-      eid:2,
-      loan:300,
-      rent:300,
-      gas:100,
-      medical:100,
-      car:200,
-      food:200,
-      month:1,
-      user_id:1
-     
-    },
-
-    {
-      eid:3,
-      loan:500,
-      rent:2000,
-      gas:100,
-      medical:100,
-      car:200,
-      food:200,
-      month:2,
-      user_id_1
-    }
-      
-  ])
-    .then(() => {
-      res.send('Database seeded!');
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});*/
 
 module.exports = router;
-
-
