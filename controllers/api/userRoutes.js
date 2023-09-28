@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const User = require('../../models/user');
+const User = require('../../models/User');
 const bcrypt = require('bcrypt');
 
 router.post('/signup', async (req, res) => {
@@ -15,12 +15,12 @@ router.post('/signup', async (req, res) => {
       lastname,
       email,
       password: hashedPassword,
-    });
+    })
 
     const data = userData.get({ plain: true });
 
     req.session.save(() => {
-      req.session.user_id = userData.uid;
+      req.session.user_id = data.uid;
       req.session.logged_in = true;
 
       // Respond with a success message using SweetAlert
