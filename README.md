@@ -46,10 +46,10 @@ Contributions are welcome!
 No tests are currently provided for this project.
 
 ## REPOSITORY
-![REPOSITORY](https://github.com/priyakumi/TRACK_SAVER)
+https://github.com/priyakumi/TRACK_SAVER
 
 ## LIVE URL
-![LIVEURL](https://tracksaver-a52b334c49ce.herokuapp.com/)
+https://tracksaver-a52b334c49ce.herokuapp.com
 
 ## Screen-shots
 ![screen-shot](public/assets/tracksaver1.png)
