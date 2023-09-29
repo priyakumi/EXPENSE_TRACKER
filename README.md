@@ -48,7 +48,7 @@ No tests are currently provided for this project.
 ## REPOSITORY
 https://github.com/priyakumi/TRACK_SAVER
 
-## LIVE URL
+## HEROKU LIVE URL
 https://tracksaver-a52b334c49ce.herokuapp.com
 
 ## Screen-shots
