@@ -15,7 +15,7 @@ Track_Saver is a web application designed to help users track their income, expe
 ## Installation
 To run this application locally, follow these steps:
 1. Clone the repository to your local machine:
-    git clone https://github.com/yourusername/track-saver.git
+    git clone https://github.com/priyakumi/TRACK_SAVER.git
 2. Install the project dependencies:
     cd TRACK_SAVER
     npm install
