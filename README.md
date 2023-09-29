@@ -45,15 +45,16 @@ Contributions are welcome!
 ## Tests
 No tests are currently provided for this project.
 
-## Questions      
-https://github.com/Pokepoison/
-https://github.com/priyakumi/TRACK_SAVER
-https://tracksaver-a52b334c49ce.herokuapp.com/
+## REPOSITORY
+![REPOSITORY](https://github.com/priyakumi/TRACK_SAVER)
+
+## LIVE URL
+![LIVEURL](https://tracksaver-a52b334c49ce.herokuapp.com/)
 
 ## Screen-shots
-![screen-shot](public/assets/tracksaver-a52b334c49ce.herokuapp.
-![screen-shot](<public/assets/tracksaver-a52b334c49ce.herokuapp.com_dashboard (1).png>)com_.png)
-![Screen-shot](public/assets/tracksaver-a52b334c49ce.herokuapp.com_dashboard.png)
+![screen-shot](public/assets/tracksaver1.png)
+![screen-shot](public/assets/tracksaver2.png)
+![Screen-shot](public/assets/tracksaver3.png)
 
 ## Video-link
 https://drive.google.com/file/d/18evJFyLT3MG0gALqX7m2UDZPyr2bx1yV/view
